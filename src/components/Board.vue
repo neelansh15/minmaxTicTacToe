@@ -6,6 +6,7 @@
 
 <script>
 import { ref } from 'vue';
+import { useRoute } from 'vue-router'
 import Square from './Square.vue';
 export default {
   components: { Square },
@@ -16,6 +17,8 @@ export default {
           ['O', 'X', 'O'],
       ])
 
+    const route = useRoute()
+
     //For Compatibility with nested structure while maintaining clean UI
     let results = ref([])
     results_array.value.forEach(subArray => {
@@ -25,7 +28,8 @@ export default {
     })
       
       return{
-          results
+          results,
+          first_move: route.query.start
       }
   },
 };
