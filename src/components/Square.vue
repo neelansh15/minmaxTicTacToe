@@ -1,5 +1,5 @@
 <template>
-  <div class="square" :class="disable_hover">
+  <div class="square" :class="disable_hover" @click="onSquareClick">
     <div :class="result">
       <span v-if="result == 'X'">X</span>
     </div>
@@ -7,21 +7,35 @@
 </template>
 
 <script>
+import { toRefs, computed } from "vue";
+import { useStore } from "vuex";
+
 export default {
-  props: ["result"],
+  props: ["id", "result"],
   setup(props) {
-      const result = props.result
-      const disable_hover = (result == '') ? 'can_hover' : ''
-      return{
-          disable_hover
+
+    let {result, id} = toRefs(props)
+
+    const disable_hover = computed(() => (result.value) == "" ? "can_hover" : "")
+
+    const store = useStore();
+    const onSquareClick = () => {
+      if (result.value == "") {
+        store.commit("toggle_next_move", id);
       }
+    };
+
+    return {
+      disable_hover,
+      onSquareClick,
+      id
+    };
   },
 };
 </script>
 
 <style scoped>
 .square {
-  cursor: pointer;
   background: #c63939;
   width: 6em;
   height: 6em;
@@ -37,6 +51,7 @@ export default {
 }
 
 .can_hover:hover {
+  cursor: pointer;
   background: #d33f3f;
 }
 .X {

@@ -1,21 +1,23 @@
 <template>
+{{next_move}}
   <div class="grid">
-    <square v-for="result in results" :key="result" :id="n" :result="result" />
+    <square v-for="(result, i) in results" :key="i" :id="i" :result="result" />
   </div>
 </template>
 
 <script>
-import { ref, watchEffect } from "vue";
+import { computed, ref, watchEffect } from "vue";
 import { useRoute } from "vue-router";
+import { useStore } from 'vuex'
+
 import Square from "./Square.vue";
+
 export default {
   components: { Square },
   setup() {
-    let results_array = ref([
-      ["X", "O", "X"],
-      ["", "", "X"],
-      ["O", "X", "O"],
-    ]);
+    const store = useStore()
+
+    let results_array = computed(() => store.state.results_array)
 
     const route = useRoute();
 
@@ -23,6 +25,7 @@ export default {
     let results = ref([]);
     
     watchEffect(() => {
+      results.value = []
       results_array.value.forEach((subArray) => {
         subArray.forEach((element) => {
           results.value.push(element);
@@ -30,9 +33,12 @@ export default {
       });
     });
 
+    let next_move = computed(() => store.state.next_move)
+
     return {
       results,
       first_move: route.query.start,
+      next_move
     };
   },
 };
