@@ -112,3 +112,16 @@ function bestMove(board) {
 }
 
 // always check winner before next round starts
+
+// Driver code
+
+const main = board => {
+	let result = checkWinner()
+	if (result !== null) {
+		console.log(result)
+		return null
+	}
+	let move = bestMove(board)
+	console.log(move.row, move.column)
+	return move
+}
