@@ -10,17 +10,19 @@ import Square from './Square.vue';
 export default {
   components: { Square },
   setup() {
-      let results = ref([
-          'X',
-          'O',
-          'X',
-          'X',
-          'X',
-          'X',
-          'X',
-          'X',
-          'X',
+      let results_array = ref([
+          ['X', 'O', 'X'],
+          ['X', 'O', 'X'],
+          ['O', 'X', 'O'],
       ])
+
+    //For Compatibility with nested structure while maintaining clean UI
+    let results = ref([])
+    results_array.value.forEach(subArray => {
+        subArray.forEach(element => {
+            results.value.push(element)
+        })
+    })
       
       return{
           results

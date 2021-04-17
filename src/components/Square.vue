@@ -27,7 +27,7 @@ export default {
     display: grid;
     place-items: center;
     color: #a83636;
-    font-size: 2em;
+    font-size: 2.5em;
     width: 80%;
     height: 80%;
 }
