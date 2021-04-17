@@ -54,7 +54,6 @@ function minMax(board, maximize) {
 	// this will return the best moves (for ai) and the worst moves (for user)
 	// inputs=> board:current state of the board, maximize: bool -> true for computer, false for user
 
-	// why dis
 	let result = checkWinner()
 	if (result !== null) {
 		return scores[result]
@@ -73,21 +72,19 @@ function minMax(board, maximize) {
 			bestScore = max(score, bestScore)
 		}
 		return bestScore
+	} else {
+		let bestScore = 1000
+		let moves = getAvailableMoves(board)
+		for (let i = 0; i < moves.length; i++) {
+			let row = moves[i].row
+			let column = moves[i].column
+			board[row][column] = user
+			let score = minMax(board, true) //predicting for computer if user makes the move at the current row and column
+			board[row][column] = ''
+			bestScore = min(score, bestScore)
+		}
+		return bestScore
 	}
-	//--------------------------------- why dis--------------------------------------
-	// else{
-	//   let bestScore = 1000
-	//   let moves = getAvailableMoves(board)
-	//   for(let i = 0; i < moves.length; i++){
-	//     let row = moves[i].row
-	//     let column = moves[i].column
-	//     board[row][column] = user
-	//     let score = minMax(board, true); //predicting for computer if user makes the move at the current row and column
-	//     board[row][column] = ""
-	//     bestScore = min(score, bestScore)
-	//   }
-	//   return bestScore
-	// }
 }
 
 // -------------incomplete--------------------
@@ -101,7 +98,9 @@ function bestMove(board) {
 		let row = moves[i].row
 		let column = moves[i].column
 		board[row][column] = computer
-		let score = minMax(board, false) // why false
+		let score = minMax(board, false)
+		// given that computer makes the move at current row and column, we need to check if user is benefited by checking for maxmizing condition as false
+		// if user is benefited score will be negative
 		board[row][column] = ''
 		if (score > bestScore) {
 			bestScore = score
