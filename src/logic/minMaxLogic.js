@@ -39,7 +39,10 @@ function checkWinner(board) {
 		//board[1][1] is the intersection of row and column which satisfies the win condition and helps the combining the two if conditions(for row and column)
 		return board[1][1]
 	}
-	return 'tie'
+	if (getAvailableMoves().length == 0) {
+		return 'tie'
+	}
+	return null
 }
 
 let scores = {
