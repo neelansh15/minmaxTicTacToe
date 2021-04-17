@@ -21,23 +21,14 @@ const store = createStore({
       } else {
         state.next_move = "O";
       }
-
-      const raw_results_array = state.results_array;
-
-      const winner = checkWinner(raw_results_array);
-      if (!winner) {
-        console.log(winner);
-        alert("Result: " + winner);
+    },
+    toggle_comupter_move(state, payload) {
+      state.results_array[payload.row][payload.column] =
+        state.next_move;
+      if (state.next_move == "O") {
+        state.next_move = "X";
       } else {
-        const computer_move = mainLogic(raw_results_array);
-
-        state.results_array[computer_move.row][computer_move.column] =
-          state.next_move;
-        if (state.next_move == "O") {
-          state.next_move = "X";
-        } else {
-          state.next_move = "O";
-        }
+        state.next_move = "O";
       }
     },
   },

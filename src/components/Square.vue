@@ -10,28 +10,51 @@
 import { toRefs, computed } from "vue";
 import { useStore } from "vuex";
 
+import { mainLogic, checkWinner } from "../logic/minMaxLogic";
+
 export default {
   props: ["id", "result"],
   setup(props) {
-
-    let {result, id} = toRefs(props)
+    let { result, id } = toRefs(props);
     const store = useStore();
 
-    const disable_hover = computed(() => (result.value) == "" ? "can_hover" : "")
-
-
+    const disable_hover = computed(() =>
+      result.value == "" ? "can_hover" : ""
+    );
+    let raw_results_array = []
     const onSquareClick = () => {
       if (result.value == "") {
         store.commit("toggle_next_move", id);
 
+        //Main logicc
+        let results_array = computed(() => store.state.results_array);
+        results_array.value.forEach(element => {
+            let temp = []
+            element.forEach(val => {
+                temp.push(val)
+            })
+            raw_results_array.push(temp)
+        })
 
+        console.log(raw_results_array)
+
+        const winner = checkWinner(raw_results_array);
+        if (!winner) {
+          console.log(winner);
+          alert("Result: " + winner);
+        } else {
+          const computer_move = mainLogic(raw_results_array);
+
+          commit("toggle_comupter_move", computer_move);
+        }
       }
     };
 
     return {
       disable_hover,
       onSquareClick,
-      id
+      id,
+      raw_results_array,
     };
   },
 };

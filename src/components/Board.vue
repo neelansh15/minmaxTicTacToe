@@ -1,5 +1,4 @@
 <template>
-{{next_move}}
   <div class="grid">
     <square v-for="(result, i) in results" :key="i" :id="i" :result="result" />
   </div>
