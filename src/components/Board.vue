@@ -1,33 +1,44 @@
 <template>
-    <div class="grid">
-        <div v-for="n in 9" :key="n" class="square">{{n}}</div>
-    </div>
+  <div class="grid">
+    <square v-for="result in results" :key="result" :id="n" :result="result" />
+  </div>
 </template>
 
 <script>
+import { ref } from 'vue';
+import Square from './Square.vue';
 export default {
-    setup() {
-        
-    },
-}
+  components: { Square },
+  setup() {
+      let results = ref([
+          'X',
+          'O',
+          'X',
+          'X',
+          'X',
+          'X',
+          'X',
+          'X',
+          'X',
+      ])
+      
+      return{
+          results
+      }
+  },
+};
 </script>
 
 <style scoped>
-.grid{
-    max-width: 600px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-}
-.square{
-    width: 6em;
-    height: 6em;
-    background-color: #eee;
+.grid {
+  max-width: 600px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-gap: 0.1em;
 
-    display: grid;
-    place-items: center;
-}
-.square:nth-child(odd){
-    background-color: #ccc;
+  border-radius: 50px;
+  background: #b13838;
+  box-shadow: 20px 20px 60px #a83030, -20px -20px 60px #e44242;
 }
 </style>

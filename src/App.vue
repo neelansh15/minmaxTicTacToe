@@ -20,7 +20,8 @@ export default {
 
 <style>
 body{
-  background: black;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background: #c63939;
 }
 .container {
   height: 90vh;
