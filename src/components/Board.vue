@@ -5,32 +5,35 @@
 </template>
 
 <script>
-import { ref } from 'vue';
-import { useRoute } from 'vue-router'
-import Square from './Square.vue';
+import { ref, watchEffect } from "vue";
+import { useRoute } from "vue-router";
+import Square from "./Square.vue";
 export default {
   components: { Square },
   setup() {
-      let results_array = ref([
-          ['X', 'O', 'X'],
-          ['X', 'O', 'X'],
-          ['O', 'X', 'O'],
-      ])
+    let results_array = ref([
+      ["X", "O", "X"],
+      ["", "", "X"],
+      ["O", "X", "O"],
+    ]);
 
-    const route = useRoute()
+    const route = useRoute();
 
     //For Compatibility with nested structure while maintaining clean UI
-    let results = ref([])
-    results_array.value.forEach(subArray => {
-        subArray.forEach(element => {
-            results.value.push(element)
-        })
-    })
-      
-      return{
-          results,
-          first_move: route.query.start
-      }
+    let results = ref([]);
+    
+    watchEffect(() => {
+      results_array.value.forEach((subArray) => {
+        subArray.forEach((element) => {
+          results.value.push(element);
+        });
+      });
+    });
+
+    return {
+      results,
+      first_move: route.query.start,
+    };
   },
 };
 </script>
