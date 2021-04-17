@@ -15,13 +15,16 @@ export default {
   setup(props) {
 
     let {result, id} = toRefs(props)
+    const store = useStore();
 
     const disable_hover = computed(() => (result.value) == "" ? "can_hover" : "")
 
-    const store = useStore();
+
     const onSquareClick = () => {
       if (result.value == "") {
         store.commit("toggle_next_move", id);
+
+
       }
     };
 

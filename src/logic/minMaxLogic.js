@@ -1,5 +1,5 @@
-let computer = 'X'
-let user = 'O'
+let computer = 'O'
+let user = 'X'
 
 function getAvailableMoves(board) {
 	let lengthOfBoard = 3
@@ -14,7 +14,9 @@ function getAvailableMoves(board) {
 	return moves
 }
 
-function checkWinner(board) {
+export function checkWinner(board) {
+	console.log("BOARD")
+	console.log(board)
 	// The function return the the symbol of the wining user
 	// if returns -1 => no current winner
 	// inputs=> board: this the current state of board
@@ -22,20 +24,20 @@ function checkWinner(board) {
 	// row or column check
 	for (let i = 0; i < boardLength; i++) {
 		if (
-			(board[i][0] == board[i][1]) == board[i][2] ||
-			(board[0][i] == board[1][i]) == board[2][i]
+			((board[i][0] == board[i][1]) && (board[i][1] == board[i][2])) ||
+			((board[0][i] == board[1][i]) && (board[1][i] == board[2][i]))
 		) {
 			//board[i][i] is the intersection of row and column which satisfies the win condition and helps the combining the two if conditions(for row and column)
-			console.log('end condition')
+			console.log('end condition ROW AND COLUMN')
 			return board[i][i]
 		}
 	}
 	// diagonal check
 	if (
-		(board[0][0] == board[1][1]) == board[2][2] ||
-		(board[0][2] == board[1][1]) == board[2][0]
+		((board[0][0] == board[1][1]) && (board[1][1] == board[2][2])) ||
+		((board[0][2] == board[1][1]) && (board[1][1] == board[2][0]))
 	) {
-		console.log('end condition')
+		console.log('end condition DIAGONAL')
 		//board[1][1] is the intersection of row and column which satisfies the win condition and helps the combining the two if conditions(for row and column)
 		return board[1][1]
 	}
@@ -107,15 +109,16 @@ function bestMove(board) {
 			bestMove = { row, column }
 		}
 	}
-	board[move.row][move.column] = computer
-	current_player = user
+	return bestMove
+	// board[move.row][move.column] = computer
+	// current_player = user
 }
 
 // always check winner before next round starts
 
 // Driver code
 
-const main = board => {
+export const mainLogic = board => {
 	let result = checkWinner()
 	if (result !== null) {
 		console.log(result)
