@@ -5,9 +5,10 @@
 </template>
 
 <script>
-import { computed, ref, watchEffect } from "vue";
+import { computed, ref, watchEffect, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useStore } from 'vuex'
+import axios from 'axios'
 
 import Square from "./Square.vue";
 
@@ -33,6 +34,16 @@ export default {
     });
 
     let next_move = computed(() => store.state.next_move)
+
+    onMounted(() => {
+      axios({
+        method: 'POST',
+        url: store.state.api_url + `/setUser`,
+        data:{
+          userSymbol: route.query.start
+        }
+      })
+    })
 
     return {
       results,

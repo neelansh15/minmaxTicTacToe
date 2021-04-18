@@ -10,6 +10,7 @@ const store = createStore({
 				['', '', ''],
 				['', '', ''],
 			],
+			api_url: 'http://localhost:5000'
 		}
 	},
 	mutations: {

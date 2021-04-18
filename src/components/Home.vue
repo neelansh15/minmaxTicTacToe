@@ -2,8 +2,8 @@
   <div>
     <h1 class="heading">Ticc Tacc Towe</h1>
     <div class="buttons">
-      <button @click="play(1)">Play the first move</button>
-      <button @click="play(0)">Let computer play the first move</button>
+      <button @click="play('X')">Play the first move</button>
+      <button @click="play('O')">Let computer play the first move</button>
     </div>
   </div>
 </template>
@@ -14,8 +14,8 @@ import { useRouter } from 'vue-router'
 export default {
   setup() {
       const router = useRouter()          
-      const play = (num) => {
-          router.push(`/play?start=${num}`)
+      const play = (move) => {
+          router.push(`/play?start=${move}`)
       }
 
       return{
