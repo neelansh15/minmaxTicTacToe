@@ -5,6 +5,7 @@ let count = 0
 const setUserSymbol = userSymbol => {
 	user = userSymbol
 	computer = userSymbol == 'X' ? 'O' : 'X'
+	console.log('user, computer', user, computer)
 }
 
 function getAvailableMoves(board) {
@@ -51,18 +52,27 @@ function checkWinner(board) {
 		//board[1][1] is the intersection of row and column which satisfies the win condition and helps the combining the two if conditions(for row and column)
 		return board[1][1]
 	}
-	console.log('NULL')
 	// if (getAvailableMoves()) {
 	// 	return 'tie'
 	// }
 	return null
 }
 
-let scores = {
-	computer: 10,
-	user: -10,
-	tie: 0,
+let scores
+if (computer == 'X') {
+	scores = {
+		X: 10,
+		O: -10,
+		tie: 0,
+	}
+} else {
+	scores = {
+		O: 10,
+		X: -10,
+		tie: 0,
+	}
 }
+
 function minMax(board, maximize) {
 	// count++
 	// if (count > 9) {
@@ -127,6 +137,7 @@ function bestMove(board) {
 			bestMove = { row, column }
 		}
 	}
+	console.log(bestMove)
 	return bestMove
 	// board[move.row][move.column] = computer
 	// current_player = user
@@ -143,7 +154,10 @@ const mainLogic = board => {
 		return null
 	}
 	let move = bestMove(board)
+	console.log(scores[computer])
+	console.log(move)
 	console.log(move.row, move.column)
+
 	return move
 }
 
