@@ -6,10 +6,10 @@ const store = createStore({
 		return {
 			next_move: 'X', //TODO: Set according to route, upon mount of /play
 			results_array: [
-				['', '', ''],
-				['', '', ''],
-				['', '', ''],
-			],
+                ["X", "O", ""],
+                ["", "", ""],
+                ["", "", ""],
+            ],
 			api_url: 'http://localhost:5000'
 		}
 	},
@@ -23,7 +23,7 @@ const store = createStore({
 				state.next_move = 'O'
 			}
 		},
-		toggle_comupter_move(state, payload) {
+		toggle_computer_move(state, payload) {
 			state.results_array[payload.row][payload.column] = state.next_move
 			if (state.next_move == 'O') {
 				state.next_move = 'X'

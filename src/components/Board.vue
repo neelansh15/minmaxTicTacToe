@@ -36,6 +36,7 @@ export default {
     let next_move = computed(() => store.state.next_move)
 
     onMounted(() => {
+      //Set user upon new game. Note: Can't run simultaneous games across different tabs though
       axios({
         method: 'POST',
         url: store.state.api_url + `/setUser`,

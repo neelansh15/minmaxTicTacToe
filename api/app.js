@@ -14,6 +14,7 @@ app.post('/', (req, res) => {
 	let winner = checkWinner(board)
 	let move = mainLogic(board)
 	let result = { winner: winner, move: move }
+	console.log(result)
 	return res.send(JSON.stringify(result))
 })
 
