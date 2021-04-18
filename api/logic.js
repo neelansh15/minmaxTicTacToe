@@ -2,12 +2,17 @@ let computer = 'O'
 let user = 'X'
 let count = 0
 
+const setUserSymbol = userSymbol => {
+	user = userSymbol
+	computer = userSymbol == 'X' ? 'O' : 'X'
+}
+
 function getAvailableMoves(board) {
 	let lengthOfBoard = 3
 	let moves = []
 	for (let row = 0; row < lengthOfBoard; row++) {
 		for (let column = 0; column < lengthOfBoard; column++) {
-			if (board[row][column] == '') {
+			if (board[row][column] === '') {
 				moves.push({ row, column })
 			}
 		}
@@ -54,15 +59,15 @@ function checkWinner(board) {
 }
 
 let scores = {
-	X: 10,
-	O: -10,
+	computer: 10,
+	user: -10,
 	tie: 0,
 }
 function minMax(board, maximize) {
-	count++
-	if (count > 9) {
-		return
-	}
+	// count++
+	// if (count > 9) {
+	// 	return
+	// }
 	// this will return the best moves (for ai) and the worst moves (for user)
 	// inputs=> board:current state of the board, maximize: bool -> true for computer, false for user
 
@@ -72,19 +77,16 @@ function minMax(board, maximize) {
 	}
 
 	if (maximize) {
-		console.log('maximize')
 		// get best moves for computer
 		let bestScore = -1000 //Any score will be better than this score
 		let moves = getAvailableMoves(board)
 		for (let i = 0; i < moves.length; i++) {
 			let row = moves[i].row
 			let column = moves[i].column
-			console.log(board)
-			board[row][column] = 'O'
+			board[row][column] = computer
 
 			console.log(board)
-			console.log(board[row][column])
-			console.log(board)
+
 			let score = minMax(board, false) //predicting for user if computer makes the move at the current row and column
 			board[row][column] = ''
 			bestScore = Math.max(score, bestScore)
@@ -148,4 +150,5 @@ const mainLogic = board => {
 module.exports = {
 	checkWinner,
 	mainLogic,
+	setUserSymbol,
 }
