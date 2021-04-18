@@ -1,6 +1,7 @@
 let computer = 'O'
 let user = 'X'
 let count = 0
+
 function getAvailableMoves(board) {
 	let lengthOfBoard = 3
 	let moves = []
