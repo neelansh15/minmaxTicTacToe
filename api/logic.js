@@ -74,10 +74,6 @@ if (computer == 'X') {
 }
 
 function minMax(board, maximize) {
-	// count++
-	// if (count > 9) {
-	// 	return
-	// }
 	// this will return the best moves (for ai) and the worst moves (for user)
 	// inputs=> board:current state of the board, maximize: bool -> true for computer, false for user
 
@@ -154,6 +150,7 @@ const mainLogic = board => {
 		return null
 	}
 	let move = bestMove(board)
+	console.log(computer)
 	console.log(scores[computer])
 	console.log(move)
 	console.log(move.row, move.column)

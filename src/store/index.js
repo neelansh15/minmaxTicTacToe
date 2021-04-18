@@ -6,11 +6,11 @@ const store = createStore({
 		return {
 			next_move: 'X', //TODO: Set according to route, upon mount of /play
 			results_array: [
-                ["X", "O", ""],
-                ["", "", ""],
-                ["", "", ""],
-            ],
-			api_url: 'http://localhost:5000'
+				['', '', ''],
+				['', '', ''],
+				['', '', ''],
+			],
+			api_url: 'http://localhost:5000',
 		}
 	},
 	mutations: {
