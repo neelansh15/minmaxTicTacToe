@@ -15,7 +15,7 @@ function getAvailableMoves(board) {
 	return moves
 }
 
-export function checkWinner(board) {
+function checkWinner(board) {
 	console.log('BOARD')
 	console.log(board)
 	// The function return the the symbol of the wining user
@@ -134,7 +134,7 @@ function bestMove(board) {
 
 // Driver code
 
-export const mainLogic = board => {
+const mainLogic = board => {
 	let result = checkWinner(board)
 	if (result !== null) {
 		console.log(result)
@@ -143,4 +143,9 @@ export const mainLogic = board => {
 	let move = bestMove(board)
 	console.log(move.row, move.column)
 	return move
+}
+
+module.exports = {
+	checkWinner,
+	mainLogic,
 }
