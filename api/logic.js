@@ -1,5 +1,5 @@
-let computer = 'X'
-let user = 'O'
+let computer
+let user
 let count = 0
 let scores
 
