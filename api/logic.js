@@ -1,12 +1,41 @@
-let computer = 'O'
-let user = 'X'
+let computer = 'X'
+let user = 'O'
 let count = 0
+let scores
 
 const setUserSymbol = userSymbol => {
 	user = userSymbol
 	computer = userSymbol == 'X' ? 'O' : 'X'
-	console.log('user, computer', user, computer)
+	if (computer == 'X') {
+		score = {
+			X: 10,
+			O: -10,
+			tie: 0,
+		}
+	} else {
+		score = {
+			X: -10,
+			O: 10,
+			tie: 0,
+		}
+	}
 }
+
+//comments start
+if (computer == 'X') {
+	scores = {
+		X: 10,
+		O: -10,
+		tie: 0,
+	}
+} else {
+	scores = {
+		X: -10,
+		O: 10,
+		tie: 0,
+	}
+}
+// comment end
 
 function getAvailableMoves(board) {
 	let lengthOfBoard = 3
@@ -22,8 +51,6 @@ function getAvailableMoves(board) {
 }
 
 function checkWinner(board) {
-	console.log('BOARD')
-	console.log(board)
 	// The function return the the symbol of the wining user
 	// if returns -1 => no current winner
 	// inputs=> board: this the current state of board
@@ -36,9 +63,8 @@ function checkWinner(board) {
 			board[i][i] !== ''
 		) {
 			//board[i][i] is the intersection of row and column which satisfies the win condition and helps the combining the two if conditions(for row and column)
-			console.log('end condition ROW AND COLUMN')
-			console.log(i)
-			console.log(board[i][0], board[0][i])
+			console.log('end condition ROW AND COLUMN', board[i][i])
+
 			return board[i][i]
 		}
 	}
@@ -48,29 +74,15 @@ function checkWinner(board) {
 			(board[0][2] == board[1][1] && board[1][1] == board[2][0])) &&
 		board[1][1] !== ''
 	) {
-		console.log('end condition DIAGONAL')
+		console.log('end condition DIAGONAL', board[1][1])
 		//board[1][1] is the intersection of row and column which satisfies the win condition and helps the combining the two if conditions(for row and column)
 		return board[1][1]
 	}
-	// if (getAvailableMoves()) {
-	// 	return 'tie'
-	// }
+	let movesLeft = getAvailableMoves(board)
+	if (movesLeft.length === 0) {
+		return 'tie'
+	}
 	return null
-}
-
-let scores
-if (computer == 'X') {
-	scores = {
-		X: 10,
-		O: -10,
-		tie: 0,
-	}
-} else {
-	scores = {
-		O: 10,
-		X: -10,
-		tie: 0,
-	}
 }
 
 function minMax(board, maximize) {
@@ -79,6 +91,7 @@ function minMax(board, maximize) {
 
 	let result = checkWinner(board)
 	if (result !== null) {
+		// console.log(board, scores[result], result)
 		return scores[result]
 	}
 
@@ -91,11 +104,11 @@ function minMax(board, maximize) {
 			let column = moves[i].column
 			board[row][column] = computer
 
-			console.log(board)
-
-			let score = minMax(board, false) //predicting for user if computer makes the move at the current row and column
+			let score = minMax(board, true) //predicting for user if computer makes the move at the current row and column
 			board[row][column] = ''
+			console.log('MAX:', row, column, score, bestScore)
 			bestScore = Math.max(score, bestScore)
+			// console.log(bestScore)
 		}
 		return bestScore
 	} else {
@@ -108,6 +121,7 @@ function minMax(board, maximize) {
 			let score = minMax(board, true) //predicting for computer if user makes the move at the current row and column
 			board[row][column] = ''
 			bestScore = Math.min(score, bestScore)
+			console.log('MIN:', row, column, score, bestScore)
 		}
 		return bestScore
 	}
@@ -123,8 +137,12 @@ function bestMove(board) {
 	for (let i = 0; i < moves.length; i++) {
 		let row = moves[i].row
 		let column = moves[i].column
+		console.log('Computer: ', computer)
 		board[row][column] = computer
+
 		let score = minMax(board, false)
+
+		console.log('\n\nBefore:', score, bestScore)
 		// given that computer makes the move at current row and column, we need to check if user is benefited by checking for maxmizing condition as false
 		// if user is benefited score will be negative
 		board[row][column] = ''
@@ -132,8 +150,10 @@ function bestMove(board) {
 			bestScore = score
 			bestMove = { row, column }
 		}
+		console.log('AFter: ', bestScore, row, column)
 	}
-	console.log(bestMove)
+
+	console.log('Best score:', bestScore)
 	return bestMove
 	// board[move.row][move.column] = computer
 	// current_player = user
@@ -150,11 +170,7 @@ const mainLogic = board => {
 		return null
 	}
 	let move = bestMove(board)
-	console.log(computer)
-	console.log(scores[computer])
 	console.log(move)
-	console.log(move.row, move.column)
-
 	return move
 }
 
