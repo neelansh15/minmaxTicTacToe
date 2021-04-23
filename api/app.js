@@ -1,7 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const app = express()
-const { mainLogic, checkWinner, setUserSymbol} = require('./logic')
+const { mainLogic, checkWinner, setUserSymbol } = require('./logic')
 
 app.use(cors())
 app.use(express.json())
@@ -23,6 +23,13 @@ app.post('/setUser', (req, res) => {
 	console.log(`SET USER TO ${userSymbol}`)
 	setUserSymbol(userSymbol)
 	return res.send('OK')
+})
+
+app.get('/getWinner', (req, res) => {
+	let board = req.body.board
+	let winner = checkWinner(board)
+	let result = { winner: winner }
+	return res.send(JSON.stringify(result))
 })
 
 app.listen(5000)
