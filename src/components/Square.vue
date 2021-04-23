@@ -46,8 +46,10 @@ export default {
                         board: raw_results_array,
                     },
                 }).then((res) => {
+                    console.group("Human move")
                     console.log("Response from engine: ");
                     console.log(res.data);
+                    console.groupEnd()
                     let data = res.data;
                     if (data.winner != null) {
                         alert("Result: " + data.winner);
