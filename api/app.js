@@ -25,7 +25,7 @@ app.post('/setUser', (req, res) => {
 	return res.send('OK')
 })
 
-app.get('/getWinner', (req, res) => {
+app.post('/getWinner', (req, res) => {
 	let board = req.body.board
 	let winner = checkWinner(board)
 	let result = { winner: winner }

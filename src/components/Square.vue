@@ -16,9 +16,9 @@ import axios from "axios";
 export default {
     props: ["id", "result"],
     setup(props) {
-		let { result, id } = toRefs(props);
+        let { result, id } = toRefs(props);
         const store = useStore();
-		const router = useRouter()
+        const router = useRouter();
 
         const disable_hover = computed(() =>
             result.value == "" ? "can_hover" : ""
@@ -41,7 +41,7 @@ export default {
                 //Post to API and get the winner and moves
                 axios({
                     method: "POST",
-                    url: store.state.api_url + `/`,
+                    url: store.state.api_url + "/",
                     data: {
                         board: raw_results_array,
                     },
@@ -51,9 +51,46 @@ export default {
                     let data = res.data;
                     if (data.winner != null) {
                         alert("Result: " + data.winner);
-						router.push('/')
+                        store.commit("resetBoard");
+                        router.push("/");
                     } else {
                         store.commit("toggle_computer_move", data.move);
+                        //Check winner after computer move
+                        raw_results_array = []
+                        results_array.value.forEach((element) => {
+                            let temp = [];
+                            element.forEach((val) => {
+                                temp.push(val);
+                            });
+                            raw_results_array.push(temp);
+                        });
+
+                        console.log(raw_results_array)
+                        axios({
+                            method: "POST",
+                            url: store.state.api_url + "/getWinner",
+                            data: {
+                                board: raw_results_array,
+                            },
+                        })
+                            .then((res) => {
+                                console.group("Computer move")
+                                console.log("Data after computer move: ")
+                                console.log(data)
+                                console.groupEnd()
+
+                                if (res.data.winner != null) {
+                                    alert("Result: " + res.data.winner);
+                                    store.commit("resetBoard");
+                                    router.push("/");
+                                }
+                            })
+                            .catch((e) => {
+                                console.error(
+                                    "Error in checking winner after computer move: " +
+                                        e
+                                );
+                            });
                     }
                 });
             }
