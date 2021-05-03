@@ -1,5 +1,4 @@
 import { createStore } from "vuex";
-import { mainLogic, checkWinner } from "../logic/minMaxLogic";
 
 const store = createStore({
     state() {
@@ -14,6 +13,9 @@ const store = createStore({
         };
     },
     mutations: {
+        initMoveToX(state){
+            state.next_move = "X"
+        },
         toggle_next_move(state, payload) {
             state.results_array[Math.floor(payload.value / 3)][
                 payload.value % 3

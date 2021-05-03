@@ -1,9 +1,9 @@
 <template>
     <div>
-        <h1 class="heading">Ticc Tacc Towe</h1>
+        <h1 class="heading">Tic Tac Toe</h1>
         <div class="buttons">
-            <button @click="play('X')">Play the first move</button>
-            <button @click="play('O')">Let computer play the first move</button>
+            <button @click="play('X')">Play</button>
+            <!-- <button @click="play('O')">Let computer play the first move</button> -->
         </div>
     </div>
 </template>

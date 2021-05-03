@@ -16,6 +16,7 @@ export default {
   components: { Square },
   setup() {
     const store = useStore()
+    store.commit("initMoveToX")
 
     let results_array = computed(() => store.state.results_array)
 

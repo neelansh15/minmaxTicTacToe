@@ -50,6 +50,7 @@ export default {
                     console.log("Response from engine: ");
                     console.log(res.data);
                     console.groupEnd()
+                    
                     let data = res.data;
                     if (data.winner != null) {
                         alert("Result: " + data.winner);
