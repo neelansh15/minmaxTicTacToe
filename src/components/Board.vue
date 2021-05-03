@@ -50,7 +50,7 @@ export default {
     return {
       results,
       first_move: route.query.start,
-      next_move
+      next_move,
     };
   },
 };

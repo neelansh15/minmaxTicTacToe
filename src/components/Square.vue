@@ -20,13 +20,16 @@ export default {
         const store = useStore();
         const router = useRouter();
 
+        const loading = computed(() => store.state.loading)
+
         const disable_hover = computed(() =>
-            result.value == "" ? "can_hover" : ""
+            result.value == "" && loading.value == false ? "can_hover" : ""
         );
         let raw_results_array = [];
         const onSquareClick = () => {
-            if (result.value == "") {
+            if (result.value == "" && loading.value == false) {
                 store.commit("toggle_next_move", id);
+                store.commit("setLoadingState", true)
 
                 //Main logicc
                 let results_array = computed(() => store.state.results_array);
@@ -95,6 +98,7 @@ export default {
                                 );
                             });
                     }
+                    store.commit("setLoadingState", false)
                 });
             }
         };
@@ -104,6 +108,7 @@ export default {
             onSquareClick,
             id,
             raw_results_array,
+            loading
         };
     },
 };
