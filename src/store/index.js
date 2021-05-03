@@ -10,9 +10,13 @@ const store = createStore({
                 ["", "", ""],
             ],
             api_url: "http://localhost:5000",
+            loading: false
         };
     },
     mutations: {
+        setLoadingState(state, payload){
+            state.loading = payload
+        },
         initMoveToX(state){
             state.next_move = "X"
         },
