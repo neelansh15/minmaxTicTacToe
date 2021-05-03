@@ -127,8 +127,6 @@ function minMax(board, maximize) {
 	}
 }
 
-// -------------incomplete--------------------
-
 function bestMove(board) {
 	// When the computer is making move we will maximize the bestScore
 	let bestScore = -1000 //Any score will be better than this score
