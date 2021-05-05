@@ -104,7 +104,7 @@ function minMax(board, maximize) {
 			let column = moves[i].column
 			board[row][column] = computer
 
-			let score = minMax(board, true) //predicting for user if computer makes the move at the current row and column
+			let score = minMax(board, false) //predicting for user if computer makes the move at the current row and column
 			board[row][column] = ''
 			console.log('MAX:', row, column, score, bestScore)
 			bestScore = Math.max(score, bestScore)
@@ -148,7 +148,7 @@ function bestMove(board) {
 			bestScore = score
 			bestMove = { row, column }
 		}
-		console.log('AFter: ', bestScore, row, column)
+		console.log('After: ', bestScore, row, column)
 	}
 
 	console.log('Best score:', bestScore)
