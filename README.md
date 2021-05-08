@@ -12,26 +12,25 @@
 
 ---
 
-<b> Sem III Analysis of Algorithms project</b>
+**Sem IV Analysis of Algorithms project**
 
-> One player unbeatable tic-tac-toe built using min max algorithm.
+Single player unbeatable tic-tac-toe built using the minmax algorithm.  
+UI consists of Neumorphic design.
 
 ### Installing:
-
-> yarn
-> cd api
-> yarn
+- In the root folder (frontend), run `yarn` to install all dependencies
+- In the api folder:
+  - `cd api`
+  - `yarn`
 
 ### Usage:
 
-#### Setting up the api:
+#### Run the frontend Vue server:
+- yarn dev 
 
-> cd api
-> yarn dev
-
-#### Starting the frontend:
-
-> yarn dev
+#### Run the API:
+- cd api
+- yarn dev
 
 ### Working app:
 
