@@ -35,8 +35,8 @@
 
 ### Working app:
 
-<img src="../images/main.png"/>
-<img src="../images/board.png"/>
+<img src="./images/main.png"/>
+<img src="./images/board.png"/>
 ### Future Scope:
 
 - [ ] Cache all the results of the first iteration to avoid repeated calculations
