@@ -1,4 +1,4 @@
-# <center>:x: Unbeatable Tic-Tac-Toe :o:</center>
+# <h1 align="center">:x: Unbeatable Tic-Tac-Toe :o:</h1>
 
 <div align="center">
 <br>
@@ -37,6 +37,7 @@
 
 <img src="./images/main.png"/>
 <img src="./images/board.png"/>
+
 ### Future Scope:
 
 - [ ] Cache all the results of the first iteration to avoid repeated calculations
