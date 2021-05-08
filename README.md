@@ -3,8 +3,10 @@
 <div align="center">
 <br>
 
-[![](https://img.shields.io/badge/Made_with-Vue-brightgreem?style=for-the-badge&logo=vue.js)](https://vue.palletsprojects.com/en/1.1.x/) [![](https://img.shields.io/badge/Made_with-javascript-yellow?style=for-the-badge&logo=javascript)](https://javascript.palletsprojects.com/en/1.1.x/)[![](https://img.shields.io/badge/Made_with-node.js-green?style=for-the-badge&logo=node.js)](https://javascript.palletsprojects.com/en/1.1.x/)
-[![](https://img.shields.io/badge/Made_with-express-lightgrey?style=for-the-badge&logo=express)](https://javascript.palletsprojects.com/en/1.1.x/)
+[![](https://img.shields.io/badge/Made_with-Vue-brightgreem?style=for-the-badge&logo=vue.js)](https://vuejs.org/) 
+[![](https://img.shields.io/badge/Made_with-javascript-yellow?style=for-the-badge&logo=javascript)](https://en.wikipedia.org/wiki/JavaScript)
+[![](https://img.shields.io/badge/Made_with-node.js-green?style=for-the-badge&logo=node.js)](https://nodejs.org)
+[![](https://img.shields.io/badge/Made_with-express-lightgrey?style=for-the-badge&logo=express)](http://expressjs.com/)
 <br>
 <br>
 
